@@ -1,0 +1,25 @@
+{
+  "name": "exchange-rate-app",
+  "version": "1.0.0",
+  "description": "A project to learn about web APIs",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server -c-1",
+    "cypress-run": "cypress test",
+    "cypress-dev": "cypress open",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ekrzak/exchange-rate-app.git"
+  },
+  "author": "@ekrzak",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ekrzak/exchange-rate-app/issues"
+  },
+  "homepage": "https://github.com/ekrzak/exchange-rate-app#readme",
+  "devDependencies": {
+    "cypress": "^9.5.2"
+  }
+}
