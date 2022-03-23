@@ -1,7 +1,11 @@
 body {
-  padding-top: 100px;
+  padding-top: 60px;
 }
 
 .hidden {
   display: none;
+}
+
+#navbar {
+  opacity: .95;
 }
