@@ -9,3 +9,8 @@ body {
 #navbar {
   opacity: .95;
 }
+
+#dropdown-menu {
+  max-height: 300px;
+  overflow-y: auto;
+}

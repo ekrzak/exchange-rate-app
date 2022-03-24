@@ -1,10 +1,11 @@
 function searchRatesInApi() {
   return fetch('https://v6.exchangerate-api.com/v6/b2aa2900d00de3bb4c3db731/latest/USD')
     .then(response => response.json())
-    .catch(e => console.error(e))
+    .catch(e => console.error(e));
 }
 
 function printDataInDom(dataObject) {
+  const tickers = Object.keys(dataObject['conversion_rates']);
   document.querySelector('#spinner').classList.add('hidden');
   document.querySelector('#description').classList.remove('hidden');
   document.querySelector('#description-base').textContent = `${dataObject['base_code']}`;
@@ -20,6 +21,23 @@ function printDataInDom(dataObject) {
     document.querySelector('#data-table').appendChild(newTr);
 
   });
+
+  addDropdownItems(tickers);
+}
+
+function addDropdownItems(currencies) {
+  const dropdownData = document.createDocumentFragment();
+  for (element of currencies) {
+    const newLi = document.createElement('li');
+    const newAnchor = document.createElement('a');
+    newAnchor.classList.add('dropdown-item');
+    newAnchor.href = `#`;
+    newAnchor.textContent = element;
+    newLi.appendChild(newAnchor);
+    dropdownData.appendChild(newLi);
+  }
+  
+  document.querySelector('#dropdown-menu').appendChild(dropdownData);
 }
 
 searchRatesInApi().then(data => printDataInDom(data));
