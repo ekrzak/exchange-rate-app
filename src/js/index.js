@@ -12,9 +12,7 @@ function printDataInDom(dataObject) {
   document.querySelector('#description-rate-date').textContent = `${dataObject['time_last_update_utc'].slice(0, 16)}`;
   const $dataTable = document.querySelector('#data-table');
   if ($dataTable.hasChildNodes()) {
-    while ($dataTable.firstChild) {
-      $dataTable.removeChild($dataTable.lastChild); // resets the table for avoid duplicate data
-    }
+    $dataTable.innerHTML = ''; // resets the table for avoid duplicate data
   }
   const tableDataFragment = document.createDocumentFragment();
   Object.entries(dataObject['conversion_rates']).forEach(function(pairs) {
