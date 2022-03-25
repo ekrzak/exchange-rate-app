@@ -1,5 +1,5 @@
-function searchRatesInApi() {
-  return fetch('https://v6.exchangerate-api.com/v6/b2aa2900d00de3bb4c3db731/latest/USD')
+function searchRatesInApi(ticker = 'USD') {
+  return fetch(`https://v6.exchangerate-api.com/v6/b2aa2900d00de3bb4c3db731/latest/${ticker}`)
     .then(response => response.json())
     .catch(e => console.error(e));
 }
