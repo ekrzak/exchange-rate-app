@@ -40,6 +40,8 @@ function addDropdownItems(currencies) {
     newAnchor.classList.add('dropdown-item');
     newAnchor.href = `#`;
     newAnchor.textContent = element;
+    newAnchor.setAttribute('data-bs-toggle', 'collapse');
+    newAnchor.setAttribute('data-bs-target', '.navbar-collapse.show');
     newLi.appendChild(newAnchor);
     dropdownDataFragment.appendChild(newLi);
   }
@@ -49,7 +51,6 @@ function addDropdownItems(currencies) {
 
 function searchRatesWithOtherBase(event) {
   document.querySelector('#spinner').classList.remove('hidden');
-  document.querySelector('.navbar-toggler').click();
   searchRatesInApi(event.target.innerText).then(data => printDataInDom(data));  
 }
 
