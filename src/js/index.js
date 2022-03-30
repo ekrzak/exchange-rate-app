@@ -4,18 +4,18 @@ function searchRatesInApi(ticker = 'USD') {
     .catch(e => console.error(e));
 }
 
-function printDataInDom(dataObject) {
-  const tickers = Object.keys(dataObject['conversion_rates']);
+function renderRates(rates) {
+  const tickers = Object.keys(rates['conversion_rates']);
   document.querySelector('#spinner').classList.add('hidden');
   document.querySelector('#description').classList.remove('hidden');
-  document.querySelector('#description-base').textContent = `${dataObject['base_code']}`;
-  document.querySelector('#description-rate-date').textContent = `${dataObject['time_last_update_utc'].slice(0, 16)}`;
+  document.querySelector('#description-base').textContent = `${rates['base_code']}`;
+  document.querySelector('#description-rate-date').textContent = `${rates['time_last_update_utc'].slice(0, 16)}`;
   const $dataTable = document.querySelector('#data-table');
   if ($dataTable.hasChildNodes()) {
     resetTable($dataTable);
   }
   const tableDataFragment = document.createDocumentFragment();
-  Object.entries(dataObject['conversion_rates']).forEach(function(pairs) {
+  Object.entries(rates['conversion_rates']).forEach(function(pairs) {
     const newTr = document.createElement('tr');
     const currencyTd = document.createElement('td');
     const rateTd = document.createElement('td');
@@ -53,8 +53,8 @@ function addDropdownItems(currencies) {
 
 function searchRatesWithOtherBase(event) {
   document.querySelector('#spinner').classList.remove('hidden');
-  searchRatesInApi(event.target.innerText).then(data => printDataInDom(data));  
+  searchRatesInApi(event.target.innerText).then(data => renderRates(data));  
 }
 
-searchRatesInApi().then(data => printDataInDom(data));
+searchRatesInApi().then(data => renderRates(data));
 document.querySelector('#dropdown-menu').onclick = searchRatesWithOtherBase;
