@@ -56,5 +56,5 @@ function searchRatesWithOtherBase(event) {
   searchRatesInApi(event.target.innerText).then(data => renderRates(data));  
 }
 
-searchRatesInApi().then(data => renderRates(data));
+searchRatesInApi().then(renderRates);
 document.querySelector('#dropdown-menu').onclick = searchRatesWithOtherBase;
