@@ -12,7 +12,7 @@ function printDataInDom(dataObject) {
   document.querySelector('#description-rate-date').textContent = `${dataObject['time_last_update_utc'].slice(0, 16)}`;
   const $dataTable = document.querySelector('#data-table');
   if ($dataTable.hasChildNodes()) {
-    $dataTable.innerHTML = ''; // resets the table for avoid duplicate data
+    resetTable($dataTable);
   }
   const tableDataFragment = document.createDocumentFragment();
   Object.entries(dataObject['conversion_rates']).forEach(function(pairs) {
@@ -28,6 +28,10 @@ function printDataInDom(dataObject) {
 
   $dataTable.appendChild(tableDataFragment);
   addDropdownItems(tickers);
+}
+
+function resetTable(table) {
+  table.innerHTML = '';
 }
 
 function addDropdownItems(currencies) {
